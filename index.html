@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html hlang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام محاسبة إبراهيم الذكي - تسجيل الدخول</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --secondary-dark: #0d946e;
+            --danger: #ef4444;
+            --danger-dark: #dc2626;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --gray-light: #e2e8f0;
+            --success: #10b981;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .nav-item:before {
+            content: '';
+            position: absolute;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .nav-item:hover:before {
+            right: 100%;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(79, 70, 229, 0.05);
+            transform: translateX(-5px);
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+        }
+        
+        .input-field {
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .input-field:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+            background-color: white;
+        }
+        
+        .btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: all 0.4s ease;
+        }
+        
+        .btn:hover:after {
+            transform: translateX(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            z-index: 1;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+        
+        .btn-danger:hover {
+            background: linear-gradient(135deg, var(--danger-dark), var(--danger));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+        
+        .table-row:hover {
+            background-color: rgba(241, 245, 249, 0.7);
+            transform: scale(1.005);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .sidebar {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .sidebar-collapsed {
+            width: 85px;
+        }
+        
+        .sidebar-expanded {
+            width: 280px;
+        }
+        
+        .content-area {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hamburger-line {
+            transition: all 0.3s;
+        }
+        
+        .hamburger-active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger-active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .wave-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%234f46e5" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%234f46e5" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%234f46e5"/></svg>');
+            background-size: cover;
+            z-index: -1;
+            opacity: 0.8;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 0.5);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--primary-light));
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* تأثيرات خاصة */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* تأثيرات الدخول */
+        [data-aos="fade-up"] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition-property: transform, opacity;
+        }
+        
+        [data-aos="fade-up"].aos-animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* كارد الإحصائيات */
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+        
+        .stat-card:hover:after {
+            right: 100%;
+        }
+        
+        /* تأثيرات النص */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* تأثيرات الأزرار */
+        .btn-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover .btn-icon {
+            transform: translateX(5px);
+        }
+        
+        /* تأثيرات الجدول */
+        .table-container {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* تأثيرات النماذج */
+        .form-group {
+            position: relative;
+        }
+        
+        .form-label {
+            transition: all 0.3s ease;
+            transform-origin: right center;
+        }
+        
+        .input-field:focus + .form-label,
+        .input-field:not(:placeholder-shown) + .form-label {
+            transform: translateY(-25px) scale(0.85);
+            color: var(--primary);
+        }
+        
+        /* تأثيرات التنبيهات */
+        .alert {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        /* تأثيرات القوائم */
+        .list-item {
+            transition: all 0.3s ease;
+        }
+        
+        .list-item:hover {
+            transform: translateX(-10px);
+        }
+        
+        /* تأثيرات الصور */
+        .img-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .img-hover:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        /* تأثيرات الشريط الجانبي */
+        .sidebar-item {
+            position: relative;
+        }
+        
+        .sidebar-item:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--primary);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-item:hover:after {
+            transform: scaleY(1);
+        }
+        
+        /* تأثيرات الشريط العلوي */
+        .header-shadow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* تأثيرات الصفحة الرئيسية */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+        }
+        
+        /* تأثيرات الأيقونات */
+        .icon-wrapper {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-wrapper:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        /* تأثيرات الرسوم البيانية */
+        .chart-container {
+            transition: all 0.4s ease;
+        }
+        
+        .chart-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* تأثيرات النوافذ المنبثقة */
+        .modal {
+            animation: modalFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        /* تأثيرات الأقسام */
+        .section-divider {
+            position: relative;
+        }
+        
+        .section-divider:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        
+        /* تأثيرات البطاقات */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* تأثيرات النصوص المتحركة */
+        .text-float {
+            animation: textFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes textFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* تأثيرات الخلفيات */
+        .bg-pattern {
+            background-image: radial-gradient(rgba(79, 70, 229, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        /* تأثيرات الأزرار الدائرية */
+        .circle-btn {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .circle-btn:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+        
+        /* تأثيرات الصور الدائرية */
+        .circle-img {
+            transition: all 0.5s ease;
+        }
+        
+        .circle-img:hover {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        /* تأثيرات التحميل */
+        .loading-spinner {
+            animation: spin 1.5s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* تأثيرات التنقل */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
+        
+        /* تأثيرات القوائم المنسدلة */
+        .dropdown-menu {
+            animation: dropdownFadeIn 0.3s ease forwards;
+        }
+        
+        @keyframes dropdownFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* تأثيرات الأقسام المخفية */
+        .section-hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثيرات الأزرار الكبيرة */
+        .big-btn {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .big-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* تأثيرات العناوين */
+        .heading-underline {
+            position: relative;
+        }
+        
+        .heading-underline:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        /* تأثيرات البطاقات المتداخلة */
+        .stacked-card {
+            position: relative;
+        }
+        
+        .stacked-card:before, .stacked-card:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: inherit;
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+        
+        .stacked-card:before {
+            top: -5px;
+            left: -5px;
+            opacity: 0.7;
+        }
+        
+        .stacked-card:after {
+            top: -10px;
+            left: -10px;
+            opacity: 0.4;
+        }
+        
+        .stacked-card:hover:before {
+            top: -8px;
+            left: -8px;
+        }
+        
+        .stacked-card:hover:after {
+            top: -15px;
+            left: -15px;
+        }
+        
+        /* تأثيرات الأزرار العائمة */
+        .float-btn {
+            animation: floatBtn 3s ease-in-out infinite;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes floatBtn {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* تأثيرات الأقسام الكبيرة */
+        .mega-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mega-section:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
+            animation: rotateBg 20s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* تأثيرات الأزرار الصغيرة */
+        .micro-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .micro-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        /* تأثيرات النصوص البراقة */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+        }
+        
+        /* تأثيرات البطاقات الدوارة */
+        .rotate-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .rotate-card:hover {
+            transform: rotateY(15deg);
+        }
+        
+        /* تأثيرات الخلفيات المائية */
+        .water-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .water-bg:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(79, 70, 229, 0.05)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+            z-index: -1;
+            animation: waveAnim 10s linear infinite;
+        }
+        
+        @keyframes waveAnim {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* New styles for login screen enhancements */
+        .login-bg-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .login-bg-animation .shape {
+            position: absolute;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 50%;
+            animation: moveShapes 15s infinite ease-in-out;
+        }
+
+        .login-bg-animation .shape:nth-child(1) {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+        .login-bg-animation .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            left: 70%;
+            animation-delay: 2s;
+            background: rgba(16, 185, 129, 0.1);
+        }
+        .login-bg-animation .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+        .login-bg-animation .shape:nth-child(4) {
+            width: 180px;
+            height: 180px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 6s;
+            background: rgba(245, 158, 11, 0.1);
+        }
+        .login-bg-animation .shape:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            top: 5%;
+            left: 50%;
+            animation-delay: 8s;
+        }
+
+        @keyframes moveShapes {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+            25% { transform: translate(50px, -50px) scale(1.1); opacity: 0.6; }
+            50% { transform: translate(0, 100px) scale(1); opacity: 0.8; }
+            75% { transform: translate(-50px, -50px) scale(0.9); opacity: 0.7; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+        }
+
+        .login-card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dashboard enhancements */
+        .stat-card-animated {
+            transition: all 0.4s ease-in-out;
+        }
+        .stat-card-animated:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .chart-container-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-row-hover:hover {
+            background-color: rgba(79, 70, 229, 0.05);
+            transform: translateX(-3px);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-indigo-50 to-blue-50">
+    <!-- شاشة تسجيل الدخول -->
+    <div id="loginScreen" class="fixed inset-0 flex items-center justify-center p-4 bg-gradient-to-br from-indigo-100 to-blue-100 z-50 transition-all duration-500">
+        <div class="login-bg-animation">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="glass-card w-full max-w-md p-8 transform transition-all duration-500 login-card-hover stacked-card" data-aos="fade-up" data-aos-duration="800">
+            <div class="text-center mb-8">
+                <div class="flex justify-center mb-4 floating">
+                    <div class="w-24 h-24 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner circle-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2 text-gradient">نظام المحاسبة الذكي</h1>
+                <p class="text-gray-600">سجل الدخول للوصول إلى لوحة التحكم المتكاملة</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-6">
+                <div class="form-group">
+                    <div class="relative">
+                        <input type="text" id="username" required 
+                               class="input-field w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-indigo-500 pr-10"
+                               placeholder=" ">
+                        <label for="username" class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">اسم المستخدم</label>
+                        <div class="absolute right-3 top-3 text-indigo-500">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="relative">
+                        <input type="password" id="password" required 
+                               class="input-field w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-indigo-500 pr-10"
+                               placeholder=" ">
+                        <label for="password" class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">كلمة المرور</label>
+                        <div class="absolute right-3 top-3 text-indigo-500">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" 
+                               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="remember-me" class="mr-2 block text-sm text-gray-700">
+                            تذكرني
+                        </label>
+                    </div>
+                    
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 nav-link">
+                            نسيت كلمة المرور؟
+                        </a>
+                    </div>
+                </div>
+                
+                <div id="errorMessage" class="hidden p-3 text-sm text-red-700 bg-red-100 rounded-lg text-center alert"></div>
+                
+                <button type="submit" 
+                        class="btn btn-primary w-full py-3 px-4 rounded-lg text-white font-semibold shadow-md hover:shadow-lg flex items-center justify-center">
+                    <span class="btn-icon mr-2"><i class="fas fa-sign-in-alt"></i></span> تسجيل الدخول
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center text-sm text-gray-500">
+                ليس لديك حساب؟ 
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 nav-link">
+                    اتصل بمدير النظام
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-4 text-center text-xs text-gray-500 w-full">
+            © 2025 نظام محاسبة إبراهيم الذكي. جميع الحقوق محفوظة. v3.0
+        </div>
+        
+        <!-- تم إزالة زر تبديل الوضع الليلي من شاشة الدخول -->
+    </div>
+    
+    <!-- لوحة التحكم الرئيسية - تم إخفاؤها بشكل دائم في هذه النسخة -->
+    <div id="dashboard" class="hidden min-h-screen flex">
+        <!-- الشريط الجانبي -->
+        <div id="sidebar" class="sidebar sidebar-expanded bg-white shadow-lg flex flex-col">
+            <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-2 icon-wrapper">
+                        <i class="fas fa-calculator text-indigo-600"></i>
+                    </div>
+                    <span class="text-lg font-bold text-indigo-600">إبراهيم للمحاسبة</span>
+                </div>
+                <button id="toggleSidebar" class="text-gray-500 hover:text-indigo-600 focus:outline-none transition-all duration-300">
+                    <div class="hamburger relative w-6 h-5">
+                        <div class="hamburger-line absolute w-6 h-0.5 bg-gray-600 transition-all duration-300 top-0"></div>
+                        <div class="hamburger-line absolute w-6 h-0.5 bg-gray-600 transition-all duration-300 top-2"></div>
+                        <div class="hamburger-line absolute w-6 h-0.5 bg-gray-600 transition-all duration-300 top-4"></div>
+                    </div>
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto py-4">
+                <div class="px-4 mb-6">
+                    <div class="flex items-center p-3 bg-indigo-50 rounded-lg card-hover">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 icon-wrapper">
+                            <i class="fas fa-user text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <div id="userInfo" class="font-medium text-gray-800"></div>
+                            <div class="text-xs text-gray-500" id="userRole"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <nav class="space-y-1 px-2">
+                    <button onclick="showSection('dashboardSection')" id="btnDashboard" class="nav-item active w-full flex items-center p-3 text-sm font-medium rounded-md sidebar-item">
+                        <i class="fas fa-tachometer-alt w-6 text-center mr-3"></i>
+                        <span class="flex-1">لوحة التحكم</span>
+                    </button>
+                    
+                    <button onclick="showSection('warehouseSection')" id="btnWarehouse" class="nav-item w-full flex items-center p-3 text-sm font-medium rounded-md sidebar-item">
+                        <i class="fas fa-boxes w-6 text-center mr-3"></i>
+                        <span class="flex-1">المستودع</span>
+                    </button>
+                    
+                    <button onclick="showSection('incomingSection')" id="btnIncoming" class="nav-item w-full flex items-center p-3 text-sm font-medium rounded-md sidebar-item">
+                        <i class="fas fa-arrow-down w-6 text-center mr-3"></i>
+                        <span class="flex-1">الواردات</span>
+                    </button>
+                    
+                    <button onclick="showSection('outgoingSection')" id="btnOutgoing" class="nav-item w-full flex items-center p-3 text-sm font-medium rounded-md sidebar-item">
+                        <i class="fas fa-arrow-up w-6 text-center mr-3"></i>
+                        <span class="flex-1">الصادرات</span>
+                    </button>
+                    
+                    <button onclick="showSection('reportsSection')" id="btnReports" class="nav-item w-full flex items-center p-3 text-sm font-medium rounded-md sidebar-item">
+                        <i class="fas fa-chart-bar w-6 text-center mr-3"></i>
+                        <span class="flex-1">التقارير</span>
+                    </button>
+                    
+                    <button onclick="showSection('usersSection')" id="btnUsers" class="nav-item w-full flex items-center p-3 text-sm font-medium rounded-md sidebar-item">
+                        <i class="fas fa-users-cog w-6 text-center mr-3"></i>
+                        <span class="flex-1">المستخدمين</span>
+                    </button>
+                </nav>
+            </div>
+            
+            <div class="p-4 border-t border-gray-200">
+                <button onclick="logout()" class="btn btn-danger w-full flex items-center justify-center py-2 px-4 rounded-md text-white font-medium">
+                    <i class="fas fa-sign-out-alt mr-2"></i> تسجيل الخروج
+                </button>
+            </div>
+        </div>
+        
+        <!-- المنطقة الرئيسية -->
+        <div class="content-area flex-1 overflow-x-hidden">
+            <!-- شريط الأدوات العلوي -->
+            <header class="bg-white shadow-sm header-shadow">
+                <div class="flex items-center justify-between p-4">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-semibold text-gray-800 heading-underline" id="currentSectionTitle">لوحة التحكم</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="refreshAllData()" class="btn btn-primary flex items-center px-4 py-2 rounded-md">
+                            <i class="fas fa-sync-alt mr-2"></i> تحديث البيانات
+                        </button>
+                        <div class="relative">
+                            <button class="p-2 text-gray-500 hover:text-indigo-600 focus:outline-none">
+                                <i class="fas fa-bell"></i>
+                                <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full pulse"></span>
+                            </button>
+                        </div>
+                        <button id="mobileMenuToggle" class="md:hidden p-2 text-gray-500 hover:text-indigo-600 focus:outline-none">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- المحتوى الرئيسي -->
+            <main class="p-6 fade-in">
+                <!-- لوحة التحكم -->
+                <section id="dashboardSection" class="content-section space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="glass-card p-6 rounded-xl stat-card stat-card-animated" data-aos="fade-up" data-aos-delay="100">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">إجمالي المخزون</p>
+                                    <h3 class="text-2xl font-bold mt-1" id="totalInventory">0</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center icon-wrapper">
+                                    <i class="fas fa-boxes text-indigo-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card p-6 rounded-xl stat-card stat-card-animated" data-aos="fade-up" data-aos-delay="200">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">إجمالي الواردات</p>
+                                    <h3 class="text-2xl font-bold mt-1" id="totalIncoming">0</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center icon-wrapper">
+                                    <i class="fas fa-arrow-down text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card p-6 rounded-xl stat-card stat-card-animated" data-aos="fade-up" data-aos-delay="300">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">إجمالي الصادرات</p>
+                                    <h3 class="text-2xl font-bold mt-1" id="totalOutgoing">0</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center icon-wrapper">
+                                    <i class="fas fa-arrow-up text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card p-6 rounded-xl stat-card stat-card-animated" data-aos="fade-up" data-aos-delay="400">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">صافي الأرباح</p>
+                                    <h3 class="text-2xl font-bold mt-1" id="netProfit">0</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center icon-wrapper">
+                                    <i class="fas fa-coins text-purple-600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="glass-card p-6 rounded-xl chart-container-hover" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="font-semibold text-lg mb-4 heading-underline">أحدث الحركات</h3>
+                                <div class="overflow-x-auto table-container">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">النوع</th>
+                                                <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">التاريخ</th>
+                                                <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">المبلغ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200" id="latestTransactions">
+                                            <!-- سيتم ملؤها بالبيانات -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="glass-card p-6 rounded-xl chart-container-hover" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="font-semibold text-lg mb-4 heading-underline">حركة المخزون</h3>
+                                <canvas id="inventoryChart" height="250"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+                            <h3 class="font-semibold text-lg mb-4 heading-underline">التنبيهات</h3>
+                            <div id="alerts" class="space-y-2">
+                                <!-- سيتم ملؤها بالتنبيهات -->
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- المستودع -->
+                    <section id="warehouseSection" class="content-section hidden">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                            <h2 class="text-xl font-semibold text-gray-800 heading-underline">إدارة المستودع</h2>
+                            <div class="flex space-x-3">
+                                <div class="relative">
+                                    <input type="text" id="warehouseSearch" placeholder="بحث في المخزون..." class="input-field pr-10 pl-4 py-2 rounded-lg">
+                                    <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                                </div>
+                                <button onclick="toggleWarehouseForm()" class="btn btn-primary flex items-center px-4 py-2 rounded-md">
+                                    <i class="fas fa-plus mr-2"></i> إضافة عنصر جديد
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="warehouseFormContainer" class="glass-card p-6 mb-6 hidden" data-aos="fade-up">
+                            <h3 class="font-semibold text-lg mb-4 heading-underline">إضافة عنصر للمستودع</h3>
+                            <form id="addWarehouseForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="form-group">
+                                    <input type="text" id="wType" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">النوع</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="wSize" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">المقاس</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="wBrand" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الماركة</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" id="wQty" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الكمية</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="wLocation" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الموقع</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="wNotes" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">ملاحظات</label>
+                                </div>
+                                <div class="md:col-span-2 lg:col-span-3 flex justify-end space-x-3">
+                                    <button type="button" onclick="toggleWarehouseForm()" class="btn bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300">
+                                        إلغاء
+                                    </button>
+                                    <button type="submit" class="btn btn-primary px-4 py-2 rounded-md">
+                                        حفظ العنصر
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="glass-card p-6" data-aos="fade-up">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-3">
+                                <h3 class="font-semibold text-lg">قائمة المخزون</h3>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800">
+                                        <i class="fas fa-filter"></i>
+                                    </button>
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="overflow-x-auto table-container">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">النوع</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">المقاس</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الماركة</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الموقع</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">ملاحظات</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="warehouseList">
+                                        <!-- سيتم ملؤها بالبيانات -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row justify-between items-center mt-4 gap-3">
+                                <div class="text-sm text-gray-500" id="warehousePaginationInfo">
+                                    عرض 1 إلى 10 من 50 عنصر
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800 disabled">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                    <button class="px-3 py-1 rounded-md bg-indigo-600 text-white">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- الواردات -->
+                    <section id="incomingSection" class="content-section hidden">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                            <h2 class="text-xl font-semibold text-gray-800 heading-underline">إدارة الواردات</h2>
+                            <div class="flex space-x-3">
+                                <div class="relative">
+                                    <input type="text" id="incomingSearch" placeholder="بحث في الواردات..." class="input-field pr-10 pl-4 py-2 rounded-lg">
+                                    <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                                </div>
+                                <button onclick="toggleIncomingForm()" class="btn btn-primary flex items-center px-4 py-2 rounded-md">
+                                    <i class="fas fa-plus mr-2"></i> إضافة واردة جديدة
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="incomingFormContainer" class="glass-card p-6 mb-6 hidden" data-aos="fade-up">
+                            <h3 class="font-semibold text-lg mb-4 heading-underline">إضافة واردة جديدة</h3>
+                            <form id="addIncomingForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="form-group">
+                                    <input type="text" id="iType" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">النوع</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="iSupplier" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">المورد</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" id="iDate" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">التاريخ</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="iInvoice" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">رقم الفاتورة</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" id="iQty" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الكمية</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" step="0.01" id="iPrice" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">السعر</label>
+                                </div>
+                                <div class="form-group">
+                                    <select id="iCurrency" class="input-field w-full px-4 py-2 rounded-lg">
+                                        <option value="USD">دولار أمريكي</option>
+                                        <option value="SYL">ليرة سورية</option>
+                                        <option value="TRL">ليرة تركية</option>
+                                    </select>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">العملة</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" step="0.01" id="iExchangeRate" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">سعر الصرف</label>
+                                </div>
+                                <div class="form-group">
+                                    <select id="iPayment" class="input-field w-full px-4 py-2 rounded-lg">
+                                        <option value="نقدي">نقدي</option>
+                                        <option value="آجل">آجل</option>
+                                        <option value="تحويل بنكي">تحويل بنكي</option>
+                                    </select>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">طريقة الدفع</label>
+                                </div>
+                                <div class="form-group md:col-span-2 lg:col-span-3">
+                                    <textarea id="iNotes" rows="2" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" "></textarea>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">ملاحظات</label>
+                                </div>
+                                <div class="md:col-span-2 lg:col-span-3 flex justify-end space-x-3">
+                                    <button type="button" onclick="toggleIncomingForm()" class="btn bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300">
+                                        إلغاء
+                                    </button>
+                                    <button type="submit" class="btn btn-primary px-4 py-2 rounded-md">
+                                        حفظ الواردة
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="glass-card p-6" data-aos="fade-up">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-3">
+                                <h3 class="font-semibold text-lg">سجل الواردات</h3>
+                                <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3 w-full md:w-auto">
+                                    <div class="flex items-center w-full md:w-auto">
+                                        <label class="mr-2 text-sm text-gray-600 whitespace-nowrap">من:</label>
+                                        <input type="date" id="incomingDateFrom" class="input-field px-3 py-1 rounded-lg w-full">
+                                    </div>
+                                    <div class="flex items-center w-full md:w-auto">
+                                        <label class="mr-2 text-sm text-gray-600 whitespace-nowrap">إلى:</label>
+                                        <input type="date" id="incomingDateTo" class="input-field px-3 py-1 rounded-lg w-full">
+                                    </div>
+                                    <button class="btn btn-primary px-3 py-1 rounded-md whitespace-nowrap">
+                                        تطبيق الفلتر
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="overflow-x-auto table-container">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">النوع</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">المورد</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">التاريخ</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">السعر</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">العملة</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="incomingList">
+                                        <!-- سيتم ملؤها بالبيانات -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row justify-between items-center mt-4 gap-3">
+                                <div class="text-sm text-gray-500" id="incomingPaginationInfo">
+                                    عرض 1 إلى 10 من 50 عنصر
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800 disabled">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                    <button class="px-3 py-1 rounded-md bg-indigo-600 text-white">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- الصادرات -->
+                    <section id="outgoingSection" class="content-section hidden">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                            <h2 class="text-xl font-semibold text-gray-800 heading-underline">إدارة الصادرات</h2>
+                            <div class="flex space-x-3">
+                                <div class="relative">
+                                    <input type="text" id="outgoingSearch" placeholder="بحث في الصادرات..." class="input-field pr-10 pl-4 py-2 rounded-lg">
+                                    <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                                </div>
+                                <button onclick="toggleOutgoingForm()" class="btn btn-primary flex items-center px-4 py-2 rounded-md">
+                                    <i class="fas fa-plus mr-2"></i> إضافة صادرة جديدة
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="outgoingFormContainer" class="glass-card p-6 mb-6 hidden" data-aos="fade-up">
+                            <h3 class="font-semibold text-lg mb-4 heading-underline">إضافة صادرة جديدة</h3>
+                            <form id="addOutgoingForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="form-group">
+                                    <input type="text" id="oType" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">النوع</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="oCustomer" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">العميل</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" id="oDate" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">التاريخ</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="oInvoice" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">رقم الفاتورة</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" id="oQty" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الكمية</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" step="0.01" id="oPrice" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">السعر</label>
+                                </div>
+                                <div class="form-group">
+                                    <select id="oCurrency" class="input-field w-full px-4 py-2 rounded-lg">
+                                        <option value="USD">دولار أمريكي</option>
+                                        <option value="SYL">ليرة سورية</option>
+                                        <option value="TRL">ليرة تركية</option>
+                                    </select>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">العملة</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" step="0.01" id="oExchangeRate" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">سعر الصرف</label>
+                                </div>
+                                <div class="form-group">
+                                    <select id="oPayment" class="input-field w-full px-4 py-2 rounded-lg">
+                                        <option value="نقدي">نقدي</option>
+                                        <option value="آجل">آجل</option>
+                                        <option value="تحويل بنكي">تحويل بنكي</option>
+                                    </select>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">طريقة الدفع</label>
+                                </div>
+                                <div class="form-group md:col-span-2 lg:col-span-3">
+                                    <textarea id="oNotes" rows="2" class="input-field w-full px-4 py-2 rounded-lg" placeholder=" "></textarea>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">ملاحظات</label>
+                                </div>
+                                <div class="md:col-span-2 lg:col-span-3 flex justify-end space-x-3">
+                                    <button type="button" onclick="toggleOutgoingForm()" class="btn bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300">
+                                        إلغاء
+                                    </button>
+                                    <button type="submit" class="btn btn-primary px-4 py-2 rounded-md">
+                                        حفظ الصادرة
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="glass-card p-6" data-aos="fade-up">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-3">
+                                <h3 class="font-semibold text-lg">سجل الصادرات</h3>
+                                <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3 w-full md:w-auto">
+                                    <div class="flex items-center w-full md:w-auto">
+                                        <label class="mr-2 text-sm text-gray-600 whitespace-nowrap">من:</label>
+                                        <input type="date" id="outgoingDateFrom" class="input-field px-3 py-1 rounded-lg w-full">
+                                    </div>
+                                    <div class="flex items-center w-full md:w-auto">
+                                        <label class="mr-2 text-sm text-gray-600 whitespace-nowrap">إلى:</label>
+                                        <input type="date" id="outgoingDateTo" class="input-field px-3 py-1 rounded-lg w-full">
+                                    </div>
+                                    <button class="btn btn-primary px-3 py-1 rounded-md whitespace-nowrap">
+                                        تطبيق الفلتر
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="overflow-x-auto table-container">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">النوع</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">العميل</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">التاريخ</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">السعر</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">العملة</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="outgoingList">
+                                        <!-- سيتم ملؤها بالبيانات -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row justify-between items-center mt-4 gap-3">
+                                <div class="text-sm text-gray-500" id="outgoingPaginationInfo">
+                                    عرض 1 إلى 10 من 50 عنصر
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800 disabled">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                    <button class="px-3 py-1 rounded-md bg-indigo-600 text-white">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- التقارير -->
+                    <section id="reportsSection" class="content-section hidden">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                            <h2 class="text-xl font-semibold text-gray-800 heading-underline">التقارير المالية</h2>
+                            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3 w-full md:w-auto">
+                                <select id="reportCurrency" class="input-field px-4 py-2 rounded-lg">
+                                    <option value="USD">دولار أمريكي</option>
+                                    <option value="SYL">ليرة سورية</option>
+                                    <option value="TRL">ليرة تركية</option>
+                                </select>
+                                <button onclick="generateReports()" class="btn btn-primary flex items-center px-4 py-2 rounded-md">
+                                    <i class="fas fa-sync-alt mr-2"></i> تحديث التقارير
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                            <div class="glass-card p-6 rounded-xl stat-card stat-card-animated" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="font-semibold text-lg mb-4 heading-underline">ملخص مالي</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg card-hover">
+                                        <div>
+                                            <p class="text-sm text-gray-500">إجمالي الواردات</p>
+                                            <h4 class="text-xl font-bold" id="reportTotalIncoming">0</h4>
+                                        </div>
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center icon-wrapper">
+                                            <i class="fas fa-download text-blue-600"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg card-hover">
+                                        <div>
+                                            <p class="text-sm text-gray-500">إجمالي الصادرات</p>
+                                            <h4 class="text-xl font-bold" id="reportTotalOutgoing">0</h4>
+                                        </div>
+                                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center icon-wrapper">
+                                            <i class="fas fa-upload text-green-600"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg card-hover">
+                                        <div>
+                                            <p class="text-sm text-gray-500">صافي الأرباح</p>
+                                            <h4 class="text-xl font-bold" id="reportNetProfit">0</h4>
+                                        </div>
+                                        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center icon-wrapper">
+                                            <i class="fas fa-coins text-purple-600"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="glass-card p-6 rounded-xl lg:col-span-2 chart-container-hover" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="font-semibold text-lg mb-4 heading-underline">تحليل المبيعات</h3>
+                                <div id="salesChart" style="height: 300px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="glass-card p-6 rounded-xl chart-container-hover" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="font-semibold text-lg mb-4 heading-underline">أفضل العملاء</h3>
+                                <div id="topCustomersChart" style="height: 300px;"></div>
+                            </div>
+                            
+                            <div class="glass-card p-6 rounded-xl chart-container-hover" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="font-semibold text-lg mb-4 heading-underline">أفضل المنتجات</h3>
+                                <div id="topProductsChart" style="height: 300px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card p-6 rounded-xl mt-6" data-aos="fade-up">
+                            <h3 class="font-semibold text-lg mb-4 heading-underline">تقرير الواردات والصادرات</h3>
+                            <div class="flex flex-col md:flex-row items-start md:items-center space-y-3 md:space-y-0 md:space-x-4 mb-4">
+                                <div class="flex items-center w-full md:w-auto">
+                                    <label class="mr-2 text-sm text-gray-600 whitespace-nowrap">من:</label>
+                                    <input type="date" id="reportDateFrom" class="input-field px-3 py-1 rounded-lg w-full">
+                                </div>
+                                <div class="flex items-center w-full md:w-auto">
+                                    <label class="mr-2 text-sm text-gray-600 whitespace-nowrap">إلى:</label>
+                                    <input type="date" id="reportDateTo" class="input-field px-3 py-1 rounded-lg w-full">
+                                </div>
+                                <button onclick="generateDetailedReport()" class="btn btn-primary px-4 py-1 rounded-md whitespace-nowrap">
+                                    توليد التقرير
+                                </button>
+                                <button onclick="exportToExcel()" class="btn btn-success px-4 py-1 rounded-md whitespace-nowrap">
+                                    <i class="fas fa-file-excel mr-2"></i> تصدير لإكسل
+                                </button>
+                            </div>
+                            
+                            <div class="overflow-x-auto table-container">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">التاريخ</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">النوع</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">القيمة</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">العملة</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">التفاصيل</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="detailedReport">
+                                        <!-- سيتم ملؤها بالبيانات -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- المستخدمين -->
+                    <section id="usersSection" class="content-section hidden">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                            <h2 class="text-xl font-semibold text-gray-800 heading-underline">إدارة المستخدمين</h2>
+                            <div class="flex space-x-3">
+                                <div class="relative">
+                                    <input type="text" id="userSearch" placeholder="بحث في المستخدمين..." class="input-field pr-10 pl-4 py-2 rounded-lg">
+                                    <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                                </div>
+                                <button onclick="toggleUserForm()" class="btn btn-primary flex items-center px-4 py-2 rounded-md">
+                                    <i class="fas fa-plus mr-2"></i> إضافة مستخدم جديد
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="userFormContainer" class="glass-card p-6 mb-6 hidden" data-aos="fade-up">
+                            <h3 class="font-semibold text-lg mb-4 heading-underline">إضافة مستخدم جديد</h3>
+                            <form id="addUserForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <input type="text" id="uName" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الاسم الكامل</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="uUsername" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">اسم المستخدم</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" id="uPassword" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">كلمة المرور</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" id="uConfirmPassword" required class="input-field w-full px-4 py-2 rounded-lg" placeholder=" ">
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">تأكيد كلمة المرور</label>
+                                </div>
+                                <div class="form-group">
+                                    <select id="uRole" class="input-field w-full px-4 py-2 rounded-lg">
+                                        <option value="المالك">المالك</option>
+                                        <option value="المدير">المدير</option>
+                                        <option value="المحاسب">المحاسب</option>
+                                        <option value="مدخل البيانات">مدخل البيانات</option>
+                                    </select>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الدور</label>
+                                </div>
+                                <div class="form-group">
+                                    <select id="uStatus" class="input-field w-full px-4 py-2 rounded-lg">
+                                        <option value="نشط">نشط</option>
+                                        <option value="غير نشط">غير نشط</option>
+                                    </select>
+                                    <label class="form-label absolute right-3 top-3 text-gray-500 pointer-events-none">الحالة</label>
+                                </div>
+                                <div class="md:col-span-2 flex justify-end space-x-3">
+                                    <button type="button" onclick="toggleUserForm()" class="btn bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300">
+                                        إلغاء
+                                    </button>
+                                    <button type="submit" class="btn btn-primary px-4 py-2 rounded-md">
+                                        حفظ المستخدم
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="glass-card p-6" data-aos="fade-up">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-3">
+                                <h3 class="font-semibold text-lg">قائمة المستخدمين</h3>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800">
+                                        <i class="fas fa-filter"></i>
+                                    </button>
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="overflow-x-auto table-container">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الاسم</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">اسم المستخدم</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الدور</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">آخر نشاط</th>
+                                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="usersList">
+                                        <!-- سيتم ملؤها بالبيانات -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row justify-between items-center mt-4 gap-3">
+                                <div class="text-sm text-gray-500" id="usersPaginationInfo">
+                                    عرض 1 إلى 10 من 50 عنصر
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-800 disabled">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                    <button class="px-3 py-1 rounded-md bg-indigo-600 text-white">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+        
+        <div class="wave-bg"></div>
+    
+        <!-- نموذج تأكيد الحذف - تم إخفاؤه بشكل دائم في هذه النسخة -->
+        <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="glass-card w-full max-w-md p-6 rounded-xl animate__animated animate__fadeIn">
+                <div class="text-center mb-4">
+                    <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-3"></i>
+                    <h3 class="text-xl font-semibold text-gray-800" id="confirmTitle">تأكيد الحذف</h3>
+                    <p class="text-gray-600 mt-2" id="confirmMessage">هل أنت متأكد أنك تريد حذف هذا العنصر؟</p>
+                </div>
+                <div class="flex justify-center space-x-4 mt-6">
+                    <button onclick="closeConfirmModal()" class="btn bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300">
+                        إلغاء
+                    </button>
+                    <button onclick="confirmAction()" class="btn btn-danger px-6 py-2 rounded-md">
+                        تأكيد
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- نافذة التنبيهات - تم إخفاؤها بشكل دائم في هذه النسخة -->
+        <div id="notificationsPanel" class="fixed top-16 right-4 w-80 bg-white rounded-xl shadow-xl z-40 hidden transform transition-all duration-300">
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                <h3 class="font-semibold text-lg">التنبيهات</h3>
+                <button onclick="toggleNotifications()" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4 max-h-96 overflow-y-auto">
+                <div id="notificationsList" class="space-y-3">
+                    <!-- سيتم ملؤها بالتنبيهات -->
+                </div>
+            </div>
+        </div>
+    
+        <!-- زر العودة للأعلى - تم إخفاؤه بشكل دائم في هذه النسخة -->
+        <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center z-30 hidden transform transition-all duration-300 hover:bg-indigo-700 hover:scale-110">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        // تهيئة مكتبة AOS للحركات
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false
+        });
+    
+        // الكود الأساسي للوظائف
+        // استخدام متغيرات البيئة
+       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxhfD57gzv2UhhrmQMuowC4angi-SKyOhuBasIyR1yf6GFZd54FKpckTNyS650Nix-9/exec'; // رابط نشر السكربت الخاص بك
+    
+        // أسماء الجداول (الأوراق) في Google Sheet
+        const TABLE_NAMES = {
+            'المستخدمون': 'المستخدمون',
+            'محاولات الدخول': 'محاولات الدخول'
+        };
+    
+        let currentUser = null;
+        // تم تبسيط الصلاحيات لأننا نركز على شاشة الدخول فقط
+        const permissions = {
+            "المالك": { dashboard:true, warehouse:true, incoming:true, outgoing:true, reports:true, users:true, edit:true },
+            "المدير": { dashboard:true, warehouse:true, incoming:true, outgoing:true, reports:true, users:false, edit:true },
+            "المحاسب": { dashboard:true, warehouse:false, incoming:false, outgoing:false, reports:true, users:false, edit:false },
+            "مدخل البيانات": { dashboard:true, warehouse:true, incoming:true, outgoing:true, reports:false, users:false, edit:false }
+        };
+        
+        // أسعار الصرف الافتراضية (غير مستخدمة في شاشة الدخول)
+        const exchangeRates = {
+            USD: 1,
+            SYL: 13000, // مثال
+            TRL: 30     // مثال
+        };
+        
+        // متغيرات التطبيق (غير مستخدمة في شاشة الدخول)
+        let currentWarehousePage = 1;
+        let currentIncomingPage = 1;
+        let currentOutgoingPage = 1;
+        let currentUsersPage = 1;
+        const itemsPerPage = 10;
+    
+        // دالة مساعدة لجلب البيانات من Google Sheet
+        async function fetchSheetData(sheetName, params = {}) {
+            const url = new URL(SCRIPT_URL);
+            url.searchParams.append('sheet', sheetName);
+            Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+            }
+            return response.json();
+        }
+    
+        // دالة مساعدة لإرسال البيانات إلى Google Sheet (POST, PATCH, DELETE)
+        async function sendSheetData(method, sheetName, data, recordId = null) {
+            const url = new URL(SCRIPT_URL);
+            url.searchParams.append('sheet', sheetName);
+            url.searchParams.append('method', method);
+            if (recordId) {
+                url.searchParams.append('id', recordId);
+            }
+    
+            const response = await fetch(url, {
+                method: 'POST', // كل الطلبات إلى Apps Script تكون POST
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ cells: data }) // إرسال البيانات ضمن كائن 'cells'
+            });
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+            }
+            return response.json();
+        }
+    
+        // دالة مساعدة لحذف البيانات من Google Sheet (غير مستخدمة في شاشة الدخول)
+        async function deleteSheetData(sheetName, recordId) {
+            const url = new URL(SCRIPT_URL);
+            url.searchParams.append('sheet', sheetName);
+            url.searchParams.append('method', 'DELETE');
+            url.searchParams.append('id', recordId);
+    
+            const response = await fetch(url, {
+                method: 'POST', // كل الطلبات إلى Apps Script تكون POST
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({}) // جسم فارغ لطلب الحذف
+            });
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+            }
+            return response.json();
+        }
+    
+        // تسجيل الدخول (مثال بسيط - يجب أن يكون التحقق من المستخدمين على الخادم)
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> جاري التحقق...';
+            btn.disabled = true;
+            
+            try {
+                const usersData = await fetchSheetData(TABLE_NAMES['المستخدمون']);
+                const foundUser = usersData.rows.find(record => 
+                    record['اسم المستخدم'] === user && record['كلمة المرور'] === pass
+                );
+    
+                if (foundUser) {
+                    currentUser = { 
+                        name: foundUser['الاسم الكامل'],
+                        username: foundUser['اسم المستخدم'],
+                        role: foundUser['الدور'] || 'مدخل البيانات',
+                        status: foundUser['الحالة'] || 'نشط',
+                        recordId: foundUser.id // حفظ الـ recordId لتحديث آخر نشاط
+                    };
+                    
+                    // تحديث آخر نشاط للمستخدم
+                    await sendSheetData('PATCH', TABLE_NAMES['المستخدمون'], {
+                        'آخر نشاط': new Date().toISOString().split('T')[0] // تنسيق YYYY-MM-DD
+                    }, currentUser.recordId);
+    
+                    // سجل محاولة الدخول الناجحة
+                    await sendSheetData('POST', TABLE_NAMES['محاولات الدخول'], {
+                        'اسم المستخدم': user,
+                        'التاريخ': new Date().toISOString().split('T')[0],
+                        'الوقت': new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+                        'الحالة': 'ناجح'
+                    });
+    
+                    document.getElementById('loginScreen').classList.add('animate__animated', 'animate__fadeOut');
+                    setTimeout(() => {
+                        document.getElementById('loginScreen').classList.add('hidden');
+                        // في هذه النسخة، لن نعرض لوحة التحكم، بل يمكن توجيه المستخدم إلى صفحة أخرى أو إظهار رسالة نجاح
+                        alert("تم تسجيل الدخول بنجاح! (لوحة التحكم مخفية في هذه النسخة)");
+                        // يمكنك هنا إعادة توجيه المستخدم إلى صفحة لوحة التحكم الفعلية إذا كانت موجودة كملف HTML منفصل
+                        // window.location.href = 'dashboard.html'; 
+                    }, 500);
+                } else {
+                    showError("بيانات الدخول غير صحيحة");
+                    btn.innerHTML = originalBtnText;
+                    btn.disabled = false;
+                    
+                    // سجل محاولة الدخول الفاشلة
+                    await sendSheetData('POST', TABLE_NAMES['محاولات الدخول'], {
+                        'اسم المستخدم': user,
+                        'التاريخ': new Date().toISOString().split('T')[0],
+                        'الوقت': new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+                        'الحالة': 'فاشل'
+                    });
+    
+                    document.getElementById('loginForm').classList.add('animate__animated', 'animate__headShake');
+                    setTimeout(() => {
+                        document.getElementById('loginForm').classList.remove('animate__animated', 'animate__headShake');
+                    }, 1000);
+                }
+            } catch (error) {
+                showError("حدث خطأ في الاتصال بالخادم أو بيانات الاعتماد: " + error.message);
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+                console.error("Login error:", error);
+            }
+        });
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+            
+            setTimeout(() => {
+                errorDiv && errorDiv.classList.add('animate__animated', 'animate__fadeOut');
+                setTimeout(() => {
+                    errorDiv.classList.remove('animate__animated', 'animate__fadeOut');
+                    errorDiv && errorDiv.classList.add('hidden');
+                }, 500);
+            }, 3000);
+        }
+        
+        // تم إزالة جميع الوظائف المتعلقة بلوحة التحكم (showSection, applyPermissions, loadDashboardStats, loadLatestTransactions, loadWarehouse, loadIncoming, loadOutgoing, loadReports, loadUsers, generateReports, generateDetailedReport, exportToExcel, editWarehouseItem, updateWarehouseItem, editIncomingItem, updateIncomingItem, editOutgoingItem, updateOutgoingItem, editUser, updateUser, toggleWarehouseForm, toggleIncomingForm, toggleOutgoingForm, toggleUserForm, showConfirmModal, closeConfirmModal, confirmAction, toggleNotifications, refreshAllData, setInterval)
+        // لأنها غير ذات صلة بشاشة الدخول فقط.
+        
+        // تسجيل الخروج (تم تبسيطه ليتناسب مع شاشة الدخول فقط)
+        function logout() {
+            currentUser = null;
+            document.getElementById('loginScreen').classList.remove('hidden', 'animate__fadeOut');
+            document.getElementById('loginScreen').classList.add('animate__animated', 'animate__fadeIn');
+            document.getElementById('loginForm').reset();
+            document.getElementById('errorMessage').classList.add('hidden');
+            alert("تم تسجيل الخروج.");
+        }
+        
+        // تهيئة النماذج عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            // لا توجد نماذج أخرى لتهيئة في هذه النسخة
+            // لا توجد أزرار تبديل الوضع الليلي أو العودة للأعلى
+        });
+        
+        // تم إزالة كود إضافة مستخدم جديد من هذا الملف لأنه يجب أن يكون جزءًا من لوحة التحكم أو صفحة إدارة المستخدمين.
+        // الكود التالي هو مجرد مثال من الملف الأصلي ولا يعمل في هذه النسخة المبسطة:
+        /*
+        const SHEET_NAME = "المستخدمون";
+        const SCRIPT_URL_OLD = "https://script.google.com/macros/s/AKfycb.../exec"; // رابط السكربت القديم
+
+        async function sendSheetDataOld(method, sheetName, data, recordId = null) {
+            // ... (نفس دالة sendSheetData الموجودة أعلاه)
+        }
+
+        async function addNewUser(userData) {
+            try {
+                const result = await sendSheetDataOld("POST", SHEET_NAME, userData);
+                alert("✅ تم إضافة المستخدم بنجاح");
+                console.log("تم:", result);
+            } catch (error) {
+                console.error("خطأ:", error);
+                alert("❌ حدث خطأ أثناء الإضافة: " + error.message);
+            }
+        }
+
+        document.getElementById("userForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const newUser = {
+                "الاسم الكامل": form.fullName.value,
+                "اسم المستخدم": form.username.value,
+                "كلمة المرور": form.password.value,
+                "الدور": form.role.value,
+                "الحالة": form.status.value,
+                "تاريخ الإنشاء": new Date().toISOString(),
+                "آخر تسجيل دخول": "",
+                "البريد الإلكتروني": "",
+                "رقم الهاتف": "",
+                "الصلاحيات الإضافية": "",
+                "تاريخ انتهاء الصلاحية": "",
+                "آخر تعديل كلمة مرور": "",
+                "عدد مرات تسجيل الدخول الفاشلة": 0
+            };
+            addNewUser(newUser);
+        });
+        */
+        </script>
+    </body>
+    </html>
